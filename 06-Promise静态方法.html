@@ -11,7 +11,21 @@
     <script>
         // all , race都是为了处理多个Promise对象的
         // 1.创建多个Promise对象
+        axios.defaults.baseURL = 'http://www.itcbc.com:3006'
+        let p1 = axios.get('/api/province')
+        let p2 = axios.get('/api/city',{params:{pname :'河北省'}})
+        let p3 = axios.get('/api/county',{params:{pname :'河北省',cname:'廊坊市'}})
         
+        // 2. 获取结果
+        // all是全部的意思所以他会得到全部的三个结果
+        // Promise.all([p1,p2,p3]).then(res=>{
+        //     console.log(res);
+        // })
+
+        // 3.race是比赛，竞争，赛跑的意思
+        Promise.race([p1,p2,p3]).then(res=>{
+            console.log(res); //只有一个结果，哪个请求最快完成，res就是这个请求的结果
+        }) 
     </script>
 </body>
 </html>
