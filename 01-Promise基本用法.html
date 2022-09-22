@@ -7,25 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-        // 【1】实例化 Promise 封装异步任务
-        const p = new Promise((resole,reject)=>{
-            setTimeout(() => {
-                let money = Math.random()*200;
-                if(money>=100){
-                    resole(' 等我，马上回来娶你')//将成功的结构传递给resolve
-                }else{
-                    reject('别等我了，找个好人')//把失败的信息传递给recjet
+    <script src="./myaxios.js"></script>
 
-                }
-            }, 1000);
-        })
-        // 【2】获取Primise的结果
-        p.then((res)=>{
-            console.log(res);
-        }).catch((err)=>{
-            console.log(err);
-        })
+    <script>
+        // // 【1】实例化 Promise 封装异步任务
+        // const p = new Promise((resole,reject)=>{
+        //     setTimeout(() => {
+        //         let money = Math.random()*200;
+        //         if(money>=100){
+        //             resole(' 等我，马上回来娶你')//将成功的结构传递给resolve
+        //         }else{
+        //             reject('别等我了，找个好人')//把失败的信息传递给recjet
+
+        //         }
+        //     }, 1000);
+        // })
+        // // 【2】获取Primise的结果
+        // p.then((res)=>{
+        //     console.log(res);
+        // }).catch((err)=>{
+        //     console.log(err);
+        // })
+        myaxios();
     </script>
 </body>
 </html> 
