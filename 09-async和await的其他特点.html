@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.async-------------------
+        // async用于修饰一个函数
+        // async function abc(){
+        //     return 123
+        // }
+        // let p = abc();
+        // console.log(p);
+
+        // 2.await--------------------
+        function test() {
+            console.log(123);
+        }
+        async function abc(){
+            console.log(111);
+            await test() //await仅仅在async函数中才有效
+            // 暂停函数的执行，后续的代码都会暂停执行
+            // 等所有同步任务执行完毕，才能执行
+            console.log(222);
+            console.log(333);
+
+        }
+        abc()
+        console.log(444);
+        console.log(555);
+
+    </script>
+</body>
+</html>
