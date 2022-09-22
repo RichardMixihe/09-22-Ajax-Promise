@@ -65,6 +65,8 @@
             style="display: none; height: 412.628px;"
           ></div>
         </div>
+        <!-- //自己添加一个音频标签 -->
+        <audio src="" autoplay style="display:none"></audio>
       </div>
       <!-- 底部 消息编辑区域 -->
       <div class="footer">
@@ -73,6 +75,7 @@
         <input type="button" value="发 送" class="input_sub" />
       </div>
     </div>
+
     <script type="text/javascript" src="js/scroll.js"></script>
     <script src="./js/axios.js"></script>
     <script>
@@ -106,10 +109,19 @@
           document.querySelector('.talk_list').innerHTML+=li2;//返回文档中匹配指定 CSS选择器的一个元素。!!注意仅仅返回匹配指定选择器的第一个元素
       resetui()//重新计算滚动条位置
       //当得到机器人的回复之后再把说的话转成语音
-      
-
+          const {data:res2} = await axios.get('/api/synthesize',{params:{text:robot}})
+          console.log(res2);
+          document.querySelector('audio').src = res2.voiceUrl;//返回文档中匹配指定 CSS选择器的一个元素。!!注意仅仅返回匹配指定选择器的第一个元素
       })
       //吧创建好的li加入到ul中
+
+      // 4.优化输入框按回车发送
+      //找到输入款按回车的his后触发发送按钮的click事件
+      document.querySelector('.input_txt'). addEventListener('keyup',function (e) {
+        if(e.key==='Enter'){
+          document.querySelector('.input_sub').click()
+        }
+      })//绑定事件
        </script>
   </body>
 </html>
