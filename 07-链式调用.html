@@ -8,6 +8,24 @@
 </head>
 <body>
     <script src="./axios.js"></script>
-    <script></script>
+    <script>
+        // 1.创建多个Promise对象
+        axios.defaults.baseURL = 'http://www.itcbc.com:3006'
+        let p1 = axios.get('/api/province')
+        let p2 = axios.get('/api/city',{params:{pname :'河北省'}})
+        let p3 = axios.get('/api/county',{params:{pname :'河北省',cname:'廊坊市'}})
+        // 2.通过.then获取结果
+        p1.then(res=>{
+            console.log(res);
+            return p2  //前面的then返回Promise对象
+         }).then(res=>{
+            console.log(res);
+            return p3
+         }).then(res=>{
+            console.log(res);
+         }).catch(err=>{
+            console.log(err);
+         })
+    </script>
 </body>
 </html>
