@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./axios.js"></script>
+    <script>
+        axios.defaults.baseURL = 'http://www.itcbc.com:3006'
+        // 1.得到Promise对象
+        let p1 = axios.get('/api/province')
+        let p2 = axios.get('/api/city',{params:{pname :'河北省'}})
+        let p3 = axios.get('/api/county',{params:{pname :'河北省',cname:'廊坊市'}})
+        async function abc(){
+            let res1 = await p1
+            let res2 = await p2
+            let res3 = await p3
+            console.log(res1);
+            console.log(res2);
+            console.log(res3);
+        }
+        abc()
+    </script>
+</body>
+</html>
