@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 1.Promise.resolve() --返回成功状态的Promise对象
+        // 2.Promise.reject(）----返回失败状态的Promise对象
+        Promise.resolve(222).then(res=>{//resolve是输出错误的
+            console.log('then',res);
+        }).catch(err=>{
+            console.log('catch', err);
+        })
+        Promise.reject(222).then(res=>{//reject是输出错误的
+            console.log('then',res);
+        }).catch(err=>{
+            console.log('catch', err);
+        })
+
+
+
+        // function Promise() {
+        //     this.age = 20
+        // }
+        
+        // Promise.abc = function () {
+        //     console.log('aaaaa');
+        // }
+        // Promise.all = function () {
+        //     console.log('aabbbbbaaa');
+        // }
+        // Promise.all();
+    </script>
+</body>
+</html>
