@@ -74,12 +74,42 @@
       </div>
     </div>
     <script type="text/javascript" src="js/scroll.js"></script>
+    <script src="./js/axios.js"></script>
     <script>
       $(function(){
         // 初始化右侧滚动条
         // 这个方法定义在scroll.js中
         resetui()
       })
-    </script>
+      axios.defaults.baseURL = 'http://www.itcbc.com:3006'
+      // 1.点击按钮获取输入框输入的内容。并渲染到页面中
+      document.querySelector('.input_sub'). addEventListener('click',async function () {
+        let val = document.querySelector('.input_txt').value;//返回文档中匹配指定 CSS选择器的一个元素。!!注意仅仅返回匹配指定选择器的第一个元素
+        // 判断：如果输入框的值为空，则什么都不做
+        if(val==='')return
+        let li = `<li class="right_word">
+            <img src="img/person02.png"> <span>${val}</span>
+          </li>`
+          document.querySelector('.talk_list').innerHTML+=li;
+      resetui()//重新计算滚动条位置
+      document.querySelector('.input_txt').value= '';//返回文档中匹配指定 CSS选择器的一个元素。!!注意仅仅返回匹配指定选择器的第一个元素
+          //当自己说的话渲染渲染渲染好之后，获取机器人的回复
+          const {data:res} = await axios('/api/robot',{params : { spoken:val}})
+          // 获取得到机器人回复的话
+          console.log(res);
+          let robot = res.data.info.text
+          let li2 = `
+          <li class="left_word">
+            <img src="img/person01.png"> <span>${robot}</span>
+          </li>
+          `
+          document.querySelector('.talk_list').innerHTML+=li2;//返回文档中匹配指定 CSS选择器的一个元素。!!注意仅仅返回匹配指定选择器的第一个元素
+      resetui()//重新计算滚动条位置
+      //当得到机器人的回复之后再把说的话转成语音
+      
+
+      })
+      //吧创建好的li加入到ul中
+       </script>
   </body>
 </html>
